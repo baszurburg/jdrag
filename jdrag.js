@@ -7,6 +7,9 @@
     var currentElement;
 
     function draggable(element, handle) {
+        if (!element) {
+            return;
+        }
         handle = handle || element;
         setPositionType(element);
         setDraggableListeners(element);
