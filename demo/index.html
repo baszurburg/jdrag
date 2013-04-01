@@ -1,0 +1,36 @@
+<html>
+<head>
+	<title>jdrag demo</title>
+<style type="text/css">
+
+	h2 {padding: 0; margin: 0;}
+	div {border: 1px solid #333; width: 200px; height: 200px; margin-left: 100px; float: left; padding: 10px;}
+
+
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="../step1.js"></script>
+
+
+</head>
+<body>
+
+	<div class="el1">div content</div>
+	<div class="el2"><h2>handle</h2>div content</div>
+
+
+
+
+
+<script>
+
+$(".el1").jdrag();
+$(".el2").jdrag({handle: "h2"});
+
+
+</script>
+
+
+
+</body>
+</html>
