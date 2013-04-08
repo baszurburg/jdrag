@@ -1,12 +1,11 @@
 // 1. When starting - set the position already to absolute (because otherwise it might flow when another element is removed)
 // 2. The handle can be a selector or an element of a jQuery element
 // 3. When moving the handle, move the container too
+// 4. add 1 to z-index of last item. Or solve conflict when two aRE OVER EACH OTHER
 
 
+(function ($, doc) {
 
-
-
-(function ($) {
 
 console.log("hello");
 
@@ -20,14 +19,11 @@ console.log("hello");
             var defaults = {
                     handle: this
                 },
-                opts =  $.extend(defaults, options),
-                currentElement,
-                $currentElement,
-                doc = $(document),
-                initialPosition;
-	
-            return this.each(function() {
-                var $this = $(this),
+                opts =  $.extend(defaults, options);
+
+            return this.each(function () {
+                var currentElement = this,
+                    $currentElement = $(this),
 					o = opts,
                     handle = $(o.handle);
 
@@ -37,7 +33,7 @@ console.log("hello");
                 //setDraggableListeners(this);
                 handle.on({
 					'mousedown': function (event) {
-						startDragging(event, this);
+                        startDragging(event, currentElement);
 					},
 					'mouseup': removeDocumentListeners,
 					'mouseenter': function (event) {
@@ -78,7 +74,7 @@ console.log("hello");
                     
                     // this function is already called when beginning
                     initialPosition = getInitialPosition($currentElement);
-                	setElementStartStyles(element);
+                    setElementStartStyles(element);
                     
                     // bz 20130331 - should we update the style at once?
 					currentElement.style.left = inPixels(initialPosition.left);
@@ -186,4 +182,4 @@ console.log("hello");
         }
     });
 
-})(jQuery);
+})(jQuery, jQuery(document));
